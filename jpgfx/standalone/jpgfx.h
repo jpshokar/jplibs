@@ -134,20 +134,7 @@ struct jpgfx_exclusive_framebuffer2d
 };
 
 
-// D3D11
-////////////////////////////////////////////////////////
-jpgfx_backend_exclusive jpgfx_function void
-jpgfx_d3d11_init(jpgfx_renderer* renderer, 
-                 HWND window);
 
-// Shaders (HLSL)
-////////////////////////////////////////////////////////
-jpgfx_backend_exclusive jpgfx_function void 
-jpgfx_hlsl_cbuffer(jpgfx_renderer* renderer,
-                   jpgfx_shader* shader, 
-                   uint32_t slot,
-                   uint32_t size,
-                   void* data);
 
 #else
 // TODO: OpenGL, and possibly METAL
@@ -426,7 +413,22 @@ jpgfx_destroy_texture2d(jpgfx_texture2d* texture2d);
 jpgfx_function void
 jpgfx_destroy_framebuffer2d(jpgfx_framebuffer2d* framebuffer2d);
 
+#if defined(JPGFX_D3D11)
+// D3D11
+////////////////////////////////////////////////////////
+jpgfx_backend_exclusive jpgfx_function void
+jpgfx_d3d11_init(jpgfx_renderer* renderer, 
+                 HWND window);
 
+// Shaders (HLSL)
+////////////////////////////////////////////////////////
+jpgfx_backend_exclusive jpgfx_function void 
+jpgfx_hlsl_cbuffer(jpgfx_renderer* renderer,
+                   jpgfx_shader* shader, 
+                   uint32_t slot,
+                   uint32_t size,
+                   void* data);
+#endif
 
 // Information releated functions.
 ////////////////////////////////////////////////////////
